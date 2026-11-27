@@ -35,7 +35,13 @@ The robot is modelled as a unicycle with linear velocity $v$ and angular velocit
 h_i = D_i^2 - d_s^2 ,
 ```
 
-and the CBF condition $\dot h_i \ge -\gamma h_i$ (with gain $\gamma > 0$) becomes one **linear** inequality in $(v, \omega)$. Constraints are taken from several look-ahead points along the body (front, centre and rear) so that the whole footprint is protected, not just one point. All the inequalities are stacked into a QP:
+and the CBF condition $\dot h_i \ge -\gamma h_i$ (with gain $\gamma > 0$) becomes one **linear** inequality in $(v, \omega)$. Constraints are taken from several look-ahead points along the body (front, centre and rear) so that the whole footprint is protected, not just one point.
+
+![Look-ahead points, safety margins and one LiDAR return with its distance and bearing](images/cbf-lookahead.png)
+
+In the figure, $\varphi_i$ is the bearing of return $p_i$ seen from a look-ahead point, and $L$ is that point's offset along the robot's heading.
+
+All the inequalities are stacked into a QP:
 
 ```math
 \min_{v,\,\omega}\ w_v (v - v_{\text{nom}})^2 + w_\omega (\omega - \omega_{\text{nom}})^2
